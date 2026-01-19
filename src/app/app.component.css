@@ -1,0 +1,20 @@
+.main-content {
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  background-color: aliceblue;
+  margin-left: 260px;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .main-content {
+    margin-left: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    margin-left: 0;
+    padding-top: 70px;
+  }
+}

@@ -1,0 +1,356 @@
+<div class="custom-signup-scope">
+  <div class="wrapper">
+    <div class="top-bar">
+      <a class="signin">Already a Member ? <span>Sign In</span></a>
+    </div>
+
+    <h2 class="main-title">Sign up</h2>
+
+    <div class="stepper">
+      <div class="step-item" [class.active]="step >= 1">
+        <div class="circle">1</div>
+        <span>Basic Details</span>
+      </div>
+      <div class="line" [class.active]="step >= 2"></div>
+      <div class="step-item" [class.active]="step >= 2">
+        <div class="circle">2</div>
+        <span>Contact Details</span>
+      </div>
+      <div class="line" [class.active]="step >= 3"></div>
+      <div class="step-item" [class.active]="step >= 3">
+        <div class="circle">3</div>
+        <span>Verification</span>
+      </div>
+    </div>
+
+    <form [formGroup]="form">
+      <div *ngIf="step === 1">
+        <h3>Basic Details</h3>
+
+        <div class="details-container">
+          <div class="form-section">
+            <div class="input-group">
+              <label>Full Name</label>
+              <input
+                type="text"
+                formControlName="fullName"
+                class="input-white"
+                [class.error-border]="form.get('fullName')?.invalid && (form.get('fullName')?.dirty || form.get('fullName')?.touched)"
+                placeholder="Enter Full Name"
+              />
+              <div *ngIf="form.get('fullName')?.invalid && (form.get('fullName')?.dirty || form.get('fullName')?.touched)" class="error-msg">
+                <span *ngIf="form.get('fullName')?.errors?.['required']">Full Name is required.</span>
+                <span *ngIf="form.get('fullName')?.errors?.['minlength']">Name must be at least 3 characters.</span>
+                <span *ngIf="form.get('fullName')?.errors?.['pattern']">Name must contain only letters.</span>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Constituency</label>
+              <input
+                type="text"
+                formControlName="constituency"
+                class="input-gray"
+                [class.error-border]="form.get('constituency')?.invalid && (form.get('constituency')?.dirty || form.get('constituency')?.touched)"
+                placeholder="Search Constituency"
+              />
+              <div *ngIf="form.get('constituency')?.invalid && (form.get('constituency')?.dirty || form.get('constituency')?.touched)" class="error-msg">
+                <span>Constituency is required.</span>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label>Select Party</label>
+                <select formControlName="party" class="input-gray" 
+                  [class.error-border]="form.get('party')?.invalid && (form.get('party')?.dirty || form.get('party')?.touched)">
+                  <option value="">- Select Party -</option>
+                  <option value="Party A">Party A</option>
+                  <option value="Party B">Party B</option>
+                </select>
+                <div *ngIf="form.get('party')?.invalid && (form.get('party')?.dirty || form.get('party')?.touched)" class="error-msg">
+                    <span>Please select a party.</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label>Position</label>
+                <select formControlName="position" class="input-gray"
+                  [class.error-border]="form.get('position')?.invalid && (form.get('position')?.dirty || form.get('position')?.touched)">
+                  <option value="">- Select -</option>
+                  <option value="Member">Member</option>
+                  <option value="Manager">Manager</option>
+                </select>
+                <div *ngIf="form.get('position')?.invalid && (form.get('position')?.dirty || form.get('position')?.touched)" class="error-msg">
+                    <span>Position is required.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label>Date Of Birth</label>
+                <input type="date" formControlName="dob" class="input-gray"
+                [class.error-border]="form.get('dob')?.invalid && (form.get('dob')?.dirty || form.get('dob')?.touched)" />
+                <div *ngIf="form.get('dob')?.invalid && (form.get('dob')?.dirty || form.get('dob')?.touched)" class="error-msg">
+                    <span>Date of Birth is required.</span>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label>Gender</label>
+                <div class="gender-options">
+                  <label class="radio-container">Male
+                    <input type="radio" value="male" formControlName="gender" />
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="radio-container">Female
+                    <input type="radio" value="female" formControlName="gender" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Vision & Mission</label>
+              <textarea
+                formControlName="vision"
+                class="input-gray"
+                [class.error-border]="form.get('vision')?.invalid && (form.get('vision')?.dirty || form.get('vision')?.touched)"
+                placeholder="Type Here..."
+              ></textarea>
+              <div *ngIf="form.get('vision')?.invalid && (form.get('vision')?.dirty || form.get('vision')?.touched)" class="error-msg">
+                <span *ngIf="form.get('vision')?.errors?.['required']">Vision is required.</span>
+                <span *ngIf="form.get('vision')?.errors?.['minlength']">Please enter at least 20 characters.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo-section">
+            <label class="photo-upload">
+              <input type="file" hidden (change)="uploadPhoto($event)" accept="image/*" />
+              <img *ngIf="photoPreview" [src]="photoPreview" class="uploaded-img" />
+              <div *ngIf="!photoPreview" class="camera-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9Z" />
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.36863 2.8465C9.64692 2.33694 10.1812 2.0166 10.7616 2.0166H13.2383C13.8187 2.0166 14.3529 2.33694 14.6312 2.8465L15.3414 4.1466H17.2C19.851 4.1466 22 6.29563 22 8.9466V15.0532C22 17.7042 19.851 19.8532 17.2 19.8532H6.8C4.14903 19.8532 2 17.7042 2 15.0532V8.9466C2 6.29563 4.14903 4.1466 6.8 4.1466H8.65846L9.36863 2.8465ZM12 17.0666C14.7981 17.0666 17.0667 14.7981 17.0667 12C17.0667 9.2019 14.7981 6.93327 12 6.93327C9.20186 6.93327 6.93333 9.2019 6.93333 12C6.93333 14.7981 9.20186 17.0666 12 17.0666Z" fill="white" />
+                </svg>
+              </div>
+            </label>
+            <span  class="photo-label" [class.hidden]="photoPreview">Add Photo</span>
+          </div>
+        </div>
+
+        <div class="education-header">
+          <h4>Education</h4>
+          <button class="add-btn" type="button" (click)="addEducation()">
+            + Add Another Education
+          </button>
+        </div>
+
+        <div formArrayName="education">
+          <div *ngFor="let edu of education.controls; let i = index" [formGroupName]="i" class="education-card-active">
+            <div class="grid-3">
+              <div class="input-group">
+                <label>Degree</label>
+                <input
+                  type="text"
+                  formControlName="degree"
+                  class="input-white"
+                  [class.error-border]="edu.get('degree')?.invalid && (edu.get('degree')?.dirty || edu.get('degree')?.touched)"
+                  placeholder="Enter Degree"
+                />
+                <div *ngIf="edu.get('degree')?.invalid && (edu.get('degree')?.dirty || edu.get('degree')?.touched)" class="error-msg">
+                    <span>Degree is required.</span>
+                </div>
+              </div>
+              <div class="input-group">
+                <label>College</label>
+                <input
+                  type="text"
+                  formControlName="college"
+                  class="input-white"
+                  [class.error-border]="edu.get('college')?.invalid && (edu.get('college')?.dirty || edu.get('college')?.touched)"
+                  placeholder="College Name"
+                />
+                <div *ngIf="edu.get('college')?.invalid && (edu.get('college')?.dirty || edu.get('college')?.touched)" class="error-msg">
+                    <span>College is required.</span>
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Year</label>
+                <input
+                  type="text"
+                  formControlName="year"
+                  class="input-white"
+                  [class.error-border]="edu.get('year')?.invalid && (edu.get('year')?.dirty || edu.get('year')?.touched)"
+                  placeholder="YYYY"
+                  maxlength="4"
+                />
+                <div *ngIf="edu.get('year')?.invalid && (edu.get('year')?.dirty || edu.get('year')?.touched)" class="error-msg">
+                    <span *ngIf="edu.get('year')?.errors?.['required']">Year is required.</span>
+                    <span *ngIf="edu.get('year')?.errors?.['pattern']">Invalid year format (YYYY) ex:(2026).</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn-cancel" type="button" (click)="removeEducation(i)">
+                <i class="bi bi-trash3-fill"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <button type="button" class="primary-btn" (click)="next()">
+            Save & Continue
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="step === 2">
+        <h3>Contact Details</h3>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              formControlName="email"
+              class="input-white"
+              [class.error-border]="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)"
+              placeholder="example@mail.com"
+            />
+            <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)" class="error-msg">
+                <span *ngIf="form.get('email')?.errors?.['required']">Email is required.</span>
+                <span *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email.</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Mobile Number</label>
+            <input
+              type="tel"
+              formControlName="mobile"
+              class="input-white"
+              [class.error-border]="form.get('mobile')?.invalid && (form.get('mobile')?.dirty || form.get('mobile')?.touched)"
+              placeholder="+123 456 789"
+              maxlength="11"
+            />
+            <div *ngIf="form.get('mobile')?.invalid && (form.get('mobile')?.dirty || form.get('mobile')?.touched)" class="error-msg">
+                <span *ngIf="form.get('mobile')?.errors?.['required']">Mobile number is required.</span>
+                <span *ngIf="form.get('mobile')?.errors?.['pattern']">Must be 11 digits and start with 01.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Permanent Address</label>
+          <textarea
+            formControlName="address"
+            class="input-gray"
+            [class.error-border]="form.get('address')?.invalid && (form.get('address')?.dirty || form.get('address')?.touched)"
+            placeholder="Enter your full address details..."
+          ></textarea>
+           <div *ngIf="form.get('address')?.invalid && (form.get('address')?.dirty || form.get('address')?.touched)" class="error-msg">
+                <span *ngIf="form.get('address')?.errors?.['required']">Address is required.</span>
+                <span *ngIf="form.get('address')?.errors?.['minlength']">Address is too short.</span>
+            </div>
+        </div>
+
+        <h4 style="padding-top: 10px;">Social Media Profiles</h4>
+        <div class="grid-2">
+          <div class="input-group">
+            <label>Facebook Profile Link</label>
+            <input
+              type="text"
+              formControlName="facebook"
+              class="input-gray"
+              [class.error-border]="form.get('facebook')?.invalid && (form.get('facebook')?.dirty || form.get('facebook')?.touched)"
+              placeholder="https://facebook.com/username"
+            />
+            <div *ngIf="form.get('facebook')?.invalid && (form.get('facebook')?.dirty || form.get('facebook')?.touched)" class="error-msg">
+                <span>Invalid Facebook URL.</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>LinkedIn Profile Link</label>
+            <input
+              type="text"
+              formControlName="linkedin"
+              class="input-gray"
+              [class.error-border]="form.get('linkedin')?.invalid && (form.get('linkedin')?.dirty || form.get('linkedin')?.touched)"
+              placeholder="https://linkedin.com/in/username"
+            />
+             <div *ngIf="form.get('linkedin')?.invalid && (form.get('linkedin')?.dirty || form.get('linkedin')?.touched)" class="error-msg">
+                <span>Invalid LinkedIn URL.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-buttons">
+          <button type="button" class="secondary-btn" (click)="prev()">
+            Back
+          </button>
+          <button type="button" class="primary-btn" (click)="next()">
+            Save & Continue
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="step === 3">
+        <h3>Identity Verification</h3>
+
+        <p style="color: #666; margin-bottom: 20px">
+          Please upload a valid government-issued ID to verify your profile.
+        </p>
+
+        <div class="input-group">
+          <label>Select ID Type</label>
+          <select
+            formControlName="idType"
+            class="input-gray"
+            style="max-width: 50%"
+            [class.error-border]="form.get('idType')?.invalid && (form.get('idType')?.dirty || form.get('idType')?.touched)"
+          >
+            <option value="National ID">National ID Card</option>
+            <option value="Passport">Passport</option>
+            <option value="Driving License">Driving License</option>
+          </select>
+        </div>
+
+        <div class="upload-box-container">
+          <label class="upload-box">
+            <input type="file" hidden (change)="uploadIdProof($event)" accept="image/*,.pdf" />
+            <div *ngIf="!idProofPreview" class="upload-content">
+              <span class="upload-icon">📂</span>
+              <p>Click to Upload Document</p>
+              <small>Supports: JPG, PNG, PDF</small>
+            </div>
+            <img *ngIf="idProofPreview" [src]="idProofPreview" class="preview-doc" />
+          </label>
+        </div>
+
+        <div class="terms-container">
+          <label class="checkbox-container">
+            <input type="checkbox" formControlName="agreeTerms" />
+            <span class="checkmark-box" [style.border-color]="form.get('agreeTerms')?.invalid && form.get('agreeTerms')?.touched ? '#dc3545' : ''"></span>
+            I hereby declare that the information provided is true and correct.
+          </label>
+           <div *ngIf="form.get('agreeTerms')?.invalid && form.get('agreeTerms')?.touched" class="error-msg">
+                <span>You must agree to the terms.</span>
+            </div>
+        </div>
+
+        <div class="footer-buttons">
+          <button type="button" class="secondary-btn" (click)="prev()">
+            Back
+          </button>
+          <button type="button" class="primary-btn" (click)="submit()">
+            Submit Application
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

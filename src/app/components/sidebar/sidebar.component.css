@@ -1,0 +1,150 @@
+/* --- Base Styles --- */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  border-right: 1px solid #86a1d6;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  transition: all 0.3s ease;
+  z-index: 1050;
+  overflow-x: hidden;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #86a1d6;
+}
+
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  flex: 1;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #111827;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.menu li i {
+  font-size: 20px;
+  min-width: 24px;
+}
+
+.menu li:hover { background: #f3f4f6; }
+.menu li.active { background: var(--main-color); color: #fff; }
+
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #86a1d6;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sidebar-footer img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  min-width: 36px;
+}
+
+/* --- Tablet View (Collapsed) --- */
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebar {
+    width: 80px;
+    padding: 16px 10px;
+  }
+
+  .logo-text, 
+  .menu li span, 
+  .sidebar-footer .user-info {
+    display: none;
+  }
+
+  .menu li {
+    justify-content: center;
+  }
+  
+  .sidebar-footer {
+    justify-content: center;
+  }
+}
+
+/* --- Mobile View (Hidden/Off-canvas) --- */
+@media (max-width: 767px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 260px;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+
+  .mobile-toggle-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1060;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .sidebar-overlay.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .close-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
+  }
+}

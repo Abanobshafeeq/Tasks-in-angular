@@ -1,0 +1,119 @@
+.cursor-pointer {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cursor-pointer:hover {
+  color: #000;
+}
+
+.cursor-pointer.active {
+  color: var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+}
+
+.letter-spacing-2 {
+  letter-spacing: 2px;
+}
+
+.placeholder-container {
+  height: 450px;
+}
+
+.custom-card {
+  width: 100%;
+  background: #fff;
+  transition: all 0.4s ease;
+  z-index: 1;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.custom-card .hover-content {
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.custom-card .hover-icon {
+  transition: all 0.4s ease;
+}
+
+.custom-card .transition-transform {
+  transition: transform 0.4s ease;
+}
+
+.custom-card:hover {
+  position: absolute;
+  z-index: 100;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+  left: 12px;
+  right: 12px;
+  width: calc(100% - 24px);
+}
+
+.custom-card:hover .hover-content {
+  max-height: 200px;
+  opacity: 1;
+  padding-bottom: 15px;
+}
+
+
+.image-swap-container img {
+  transition: all 0.8s ease;
+  backface-visibility: hidden;
+}
+
+.main-img {
+  opacity: 1;
+}
+
+.hover-img {
+  opacity: 0;
+  z-index: 1;
+}
+
+.custom-card:hover .image-swap-container:has(.hover-img) .main-img {
+  opacity: 0;
+}
+
+.custom-card:hover .hover-img {
+  opacity: 1;
+}
+
+.custom-card:hover .image-swap-container img {
+  transform: scale(1.05);
+}
+
+.custom-card:hover .image-swap-container:not(:has(.hover-img)) .main-img {
+  opacity: 1;
+}
+
+.custom-card:hover .hover-icon {
+  opacity: 1 !important;
+}
+
+.btn-success {
+  background-color: var(--main-color) !important;
+  border: 1px solid var(--main-color);
+}
+
+.text-success {
+  color: var(--main-color) !important;
+}
+
+.bg-success {
+  background-color: var(--main-color) !important;
+}
+.text-success {
+  background: transparent !important;
+  color: var(--main-color) !important;
+}
+
+@media screen and (max-width: 991px) {
+  .placeholder-container {
+    height: 320px;
+  }
+}

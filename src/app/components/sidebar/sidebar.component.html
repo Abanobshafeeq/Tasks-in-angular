@@ -1,0 +1,64 @@
+<button
+  class="btn btn-primary d-md-none mobile-toggle-btn"
+  (click)="toggleMobileMenu()"
+>
+  <i class="bi bi-list"></i>
+</button>
+
+<div
+  class="sidebar-overlay"
+  [class.show]="isMobileMenuOpen"
+  (click)="toggleMobileMenu()"
+></div>
+
+<aside class="sidebar" [class.mobile-open]="isMobileMenuOpen">
+  <div class="logo">
+    <div class="logo-icon">B</div>
+    <span class="logo-text">Sidebar</span>
+    <i
+      class="bi bi-x-lg d-md-none ms-auto close-icon"
+      (click)="toggleMobileMenu()"
+    ></i>
+  </div>
+
+ 
+
+  <ul class="menu">
+    <li
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <i class="bi bi-house"></i>
+      <span>Home</span>
+    </li>
+
+    <li routerLink="/form" routerLinkActive="active">
+      <i class="bi bi-ui-radios"></i>
+      <span>Form</span>
+    </li>
+
+    <li routerLink="/gallery" routerLinkActive="active">
+      <i class="bi bi-grid"></i>
+      <span>Gallary</span>
+    </li>
+
+    <li routerLink="/product-showCase" routerLinkActive="">
+      <i class="bi bi-box"></i>
+      <span>Product Showcase</span>
+    </li>
+
+    <li routerLink="" routerLinkActive="">
+      <i class="bi bi-person"></i>
+      <span>Customers</span>
+    </li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <img src="../../../assets/images/Abanoub.jpg" alt="user" />
+    <span class="user-info">
+      <div class="fw-bold">Abanoub</div>
+      <small class="text-muted">Admin</small>
+    </span>
+  </div>
+</aside>

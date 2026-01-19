@@ -1,1 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --input-bg: #f3f4f6;
+  --main-color: #0d6efd;
+  --color-black: #111111;
+  --color-gray: #555555;
+  --color-white: #ffffff;
+  --color-border: #e0e0e0;
+  --color-hover-primary: #444444;
+}
+
+/* ///////////////////////////////////// */
+.custom-signup-scope span {
+  color: var(--main-color);
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.main-title {
+  text-align: center;
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  border: 1px solid transparent;
+  border-radius: 25px !important;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.error-msg span {
+  color: #dc3545 !important;
+  font-size: 12px;
+  margin-top: 4px 0 4px 4px !important;
+  display: block;
+}
+
+.input-group input {
+  margin-bottom: 8px !important;
+}
+
+.input-white {
+  background-color: #fff !important;
+  border: 1px solid #f0f0f0 !important;
+}
+
+.input-white:focus {
+  border-color: var(--main-color) !important;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1) !important;
+}
+
+.input-gray {
+  background-color: #f2f4f8 !important;
+  color: #555 !important;
+  border: 1px solid transparent !important;
+}
+
+.input-gray:focus {
+  border-color: var(--main-color) !important;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1) !important;
+}
+
+select.input-gray {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 16px;
+  padding-right: 50px !important;
+}

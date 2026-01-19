@@ -1,0 +1,71 @@
+<section class="container py-5 text-center">
+  <div class="mb-5">
+    <small class="text-muted letter-spacing-2">WOODEN ACCESSORIES</small>
+    <h2 class="fw-bold mt-2">FEATURED PRODUCTS</h2>
+    <p class="text-muted mb-4">
+      Visit our shop to see amazing creations from our designers.
+    </p>
+
+    <div class="d-inline-flex gap-4 fw-bold text-secondary text-uppercase" style="font-size: 0.9rem">
+      @for (tab of tabs; track tab) {
+      <span class="cursor-pointer pb-1" [class.active]="activeTab === tab" (click)="setActiveTab(tab)">
+        {{ tab }}
+      </span>
+      }
+    </div>
+  </div>
+
+  <div class="row g-4 g-sm-2">
+    @for (product of filteredProducts; track product.id) {
+    <div class="col-xl-3 col-md-3 col-6 position-relative placeholder-container">
+      <div class="custom-card card border-0 text-center">
+        <div class="card-img-top position-relative overflow-hidden pb-2">
+          <img [src]="product.image" class="img-fluid main-img" [alt]="product.name" />
+
+          @if (product.hoverImage) {
+          <img [src]="product.hoverImage" class="img-fluid hover-img position-absolute top-0 start-0 h-100 w-100 pb-2" style="object-fit: cover" [alt]="product.name" />
+          }
+          <div class="hover-icon position-absolute top-50 start-50 translate-middle opacity-0">
+            <button class="btn btn-light rounded-circle shadow-sm">
+              <i class="bi bi-arrow-left-right"></i>
+            </button>
+          </div>
+        </div>
+        @if (product.badge) {
+        <span class="badge rounded-circle position-absolute top-0 start-0 m-3 p-3 {{ product.badge.color }}">
+          {{ product.badge.text }}
+        </span>
+        }
+        <div class="card-body pt-0 bg-white">
+          <h5 class="card-title fw-bold fs-6">{{ product.name }}</h5>
+          <p class="card-text text-muted small mb-2">{{ product.category }}</p>
+
+          <div class="price-section">
+            @if (product.oldPrice) {
+            <span class="text-decoration-line-through text-muted me-2">${{ product.oldPrice }}</span>
+            }
+            <span class="text-success fw-bold">${{ product.price }}</span>
+          </div>
+
+          <div class="hover-content overflow-hidden">
+            <hr class="my-3 text-muted opacity-25" />
+            <p class="small text-muted mb-3">{{ product.description }}</p>
+
+            <div class="d-flex justify-content-between align-items-center gap-2">
+              <button class="btn btn-outline-secondary btn-sm rounded-circle">
+                <i class="bi bi-heart"></i>
+              </button>
+              <button class="btn btn-success btn-sm flex-grow-1 fw-bold text-uppercase" style="font-size: 0.8rem">
+                View Products
+              </button>
+              <button class="btn btn-outline-secondary btn-sm rounded-circle">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

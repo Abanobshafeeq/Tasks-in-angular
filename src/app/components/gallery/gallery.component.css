@@ -1,0 +1,218 @@
+.text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px 40px 20px; 
+  font-family: var(--font-family);
+  text-align: center;
+}
+
+.content-wrapper {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.badge-text {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-black);
+  border: 1px solid #86a1d6;
+  border-radius: 50px;
+  background-color: transparent;
+}
+
+/* 2. Headline Styles */
+.headline {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--color-black);
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+@media (max-width: 768px) {
+    .text-container {
+    padding: 15px 15px 30px 15px;
+    }
+  .headline {
+    font-size: 2.5rem;
+  }
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-gray);
+  max-width: 600px;
+  margin: 0;
+}
+
+/* 4. Button Group Styles */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.btn {
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: var(--main-color);
+  color: var(--color-white);
+ 
+}
+
+.btn-primary:hover {
+  background-color: var(--color-hover-primary);
+  border-color: var(--color-hover-primary);
+}
+
+.btn-secondary {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-black);
+}
+
+
+.gallery-wrapper {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 300px;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  position: relative; 
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: #eee; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  z-index: 5;
+}
+
+.media-content,
+.video-container,
+video,
+img {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100% !important; 
+  height: 100% !important;
+  object-fit: cover; 
+  display: block;
+}
+.gallery-item:first-child img {
+  object-position: top !important; /* Forces the image to align to the top */
+}
+.video-container {
+  width: 100%;
+  height: 100%;
+}
+
+
+.col-2 {
+  grid-column:span 2;
+}
+
+.row-2 {
+  grid-row: span 2;
+}
+
+.badge {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: var(--main-color);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.badge.neon {
+  background: var(--main-color);
+  color: white;
+}
+.badge.live {
+  background: #ff3b30;
+  color: white;
+  top: 15px;
+  bottom: auto;
+}
+
+@media (max-width: 1200px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet (Scale down to 2 columns) */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+}
+
+/* Mobile (1 Column) */
+@media (max-width: 500px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+  }
+  .col-2,
+  .row-2 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
