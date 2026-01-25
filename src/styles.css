@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  --font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
   --input-bg: #f3f4f6;
   --main-color: #0d6efd;
   --color-black: #111111;
@@ -12,6 +13,9 @@
 }
 
 /* ///////////////////////////////////// */
+.text-main{
+  color: var(--main-color) !important;
+}
 .custom-signup-scope span {
   color: var(--main-color);
   font-weight: bold;
@@ -37,7 +41,9 @@ textarea {
   color: #333;
   border: 1px solid transparent;
   border-radius: 25px !important;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   outline: none;
   box-shadow: none !important;
 }
@@ -84,4 +90,40 @@ select.input-gray {
   background-position: right 20px center;
   background-size: 16px;
   padding-right: 50px !important;
+}
+/* /////////////////////////////////////// */
+/* Custom Colors matching the image */
+.bg-teal {
+  background-color: var(--main-color) !important;
+}
+.bg-teal-dark {
+  background-color: #006b5e !important;
+}
+.bg-orange {
+  background-color: #f4812f !important;
+}
+.bg-warning {
+  background-color: #facc15 !important;
+} /* Customizing warning yellow */
+
+.text-success {
+  color: var(--main-color) !important;
+}
+.bg-opacity-10 {
+  --bs-bg-opacity: 0.1;
+}
+.rounded-4 {
+  border-radius: 1rem !important;
+}
+.fw-semibold {
+  font-weight: 600 !important;
+}
+.fs-xs {
+  font-size: 10px !important;
+}
+.fs-sm-11 {
+  font-size: 11px !important;
+}
+.fs-sm-12 {
+  font-size: 12px !important;
 }

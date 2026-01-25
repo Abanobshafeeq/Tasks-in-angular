@@ -1,0 +1,205 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h3 class="fw-bold text-main">Product Dashboard</h3>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="card shadow-sm border-0 rounded-3 sticky-top">
+          <div class="card-header bg-white pt-3 pb-0 border-bottom-0">
+            <h5 class="fw-bold text-main m-0">
+              <i
+                class="bi"
+                [ngClass]="isEditing ? 'bi-pencil-square' : 'bi-plus-circle'"
+              ></i>
+              {{ isEditing ? "Edit Product" : "Add New Product" }}
+            </h5>
+            <hr class="text-main opacity-25" />
+          </div>
+
+          <div class="p-4 pt-0">
+            <form (ngSubmit)="onSubmit()" #f="ngForm">
+              <div class="mb-2">
+                <label
+                  class="form-label text-muted small fw-bold text-uppercase"
+                  >Product Name</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text border-end-0"
+                    ><i class="bi bi-tag"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control border-start-0"
+                    [(ngModel)]="productForm.name"
+                    name="name"
+                    required
+                    placeholder="Ex: Gaming Chair"
+                  />
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <label
+                  class="form-label text-muted small fw-bold text-uppercase"
+                  >Price (EGP)</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text bg-light border-end-0"
+                    ><i class="bi bi-currency-dollar"></i
+                  ></span>
+                  <input
+                    type="number"
+                    class="form-control border-start-0 bg-light"
+                    [(ngModel)]="productForm.price"
+                    name="price"
+                    required
+                    placeholder="0.00"
+                  />
+                </div>
+              </div>
+              <div class="mb-2">
+                <label
+                  class="form-label text-muted small fw-bold text-uppercase"
+                  >Upload Image</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text bg-light border-end-0"
+                    ><i class="bi bi-cloud-upload"></i
+                  ></span>
+                  <input
+                    type="file"
+                    class="form-control border-start-0 bg-light text-main"
+                    [(ngModel)]="productForm.imageUrl"
+                    (change)="onFileSelected($event)"
+                    accept="image/*"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="d-grid gap-2 mt-4">
+                <button
+                  type="submit"
+                  class="btn btn-primary fw-bold shadow-sm"
+                  [disabled]="!f.valid"
+                >
+                  {{ isEditing ? "Update Changes" : "Add Product" }}
+                </button>
+
+                <button
+                  *ngIf="isEditing"
+                  type="button"
+                  class="btn btn-light text-muted"
+                  (click)="resetForm()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card shadow-sm border-0 rounded-3">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <div class="card shadow-sm border-0">
+                <table class="table table-hover align-middle mb-0">
+                  <thead class="bg-light">
+                    <tr>
+                      <th
+                        class="py-3 ps-4 text-muted small text-uppercase fw-bold border-0"
+                        style="width: 50%"
+                      >
+                        Item Name
+                      </th>
+                      <th
+                        class="py-3 text-center text-muted small text-uppercase fw-bold border-0"
+                        style="width: 25%"
+                      >
+                        Price
+                      </th>
+                      <th
+                        class="py-3 text-center text-muted small text-uppercase fw-bold border-0"
+                        style="width: 25%"
+                      >
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngFor="let prod of products">
+                      <td class="ps-4 py-3">
+                        <div class="d-flex align-items-center">
+                          <div
+                            class="rounded-3 bg-light d-flex align-items-center justify-content-center me-3 border shadow-sm"
+                            style="width: 50px; height: 50px; overflow: hidden"
+                          >
+                            <img
+                              *ngIf="prod.imageUrl"
+                              [src]="prod.imageUrl"
+                              class="img-fluid w-100 h-100"
+                              style="object-fit: cover"
+                              alt="product"
+                            />
+                            <i
+                              *ngIf="!prod.imageUrl"
+                              class="bi bi-image text-secondary fs-4"
+                            ></i>
+                          </div>
+
+                          <div>
+                            <h6 class="mb-0 fw-bold text-dark">
+                              {{ prod.name }}
+                            </h6>
+                            <small class="text-muted" style="font-size: 0.8rem">
+                              ID: #{{ prod.id }}
+                            </small>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="fw-bold text-primary text-center">
+                        {{ prod.price | currency: "EGP " : "symbol" : "1.0-0" }}
+                      </td>
+
+                      <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                          <button
+                            class="btn btn-sm btn-outline-primary border-0 bg-primary-subtle text-primary"
+                            (click)="onEdit(prod)"
+                            title="Edit"
+                          >
+                            <i class="bi bi-pencil-fill"></i>
+                          </button>
+                          <button
+                            class="btn btn-sm btn-outline-danger border-0 bg-danger-subtle text-danger"
+                            (click)="onDelete(prod.id)"
+                            title="Delete"
+                          >
+                            <i class="bi bi-trash-fill"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr *ngIf="products.length === 0">
+                      <td colspan="3" class="text-center py-5 text-muted">
+                        Start by adding a new product from the form!
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

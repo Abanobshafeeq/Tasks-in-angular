@@ -1,0 +1,213 @@
+<div class="container-fluid min-vh-100 p-1">
+  <h2 class="fw-bold  text-main">Dashboard</h2>
+
+  <div class="row g-3">
+    <div class="col-lg-9">
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <div class="bg-white p-3 rounded-4 shadow-sm border-0 h-100">
+            <div class="d-flex align-items-center mb-2">
+              <span class="status-dot bg-teal me-2"></span>
+              <span class="text-muted small fw-semibold">Accepted</span>
+            </div>
+            <h2 class="fw-bold m-0">
+              {{ dashboardData.overview.accepted | number }}
+            </h2>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="bg-white p-3 rounded-4 shadow-sm border-0 h-100">
+            <div class="d-flex align-items-center mb-2">
+              <span class="status-dot bg-warning me-2"></span>
+              <span class="text-muted small fw-semibold">In Contract</span>
+            </div>
+            <h2 class="fw-bold m-0">
+              {{ dashboardData.overview.inContract | number }}
+            </h2>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="bg-white p-3 rounded-4 shadow-sm border-0 h-100">
+            <div class="d-flex align-items-center mb-2">
+              <span class="status-dot bg-danger me-2"></span>
+              <span class="text-muted small fw-semibold">In Approval</span>
+            </div>
+            <h2 class="fw-bold m-0">
+              {{ dashboardData.overview.inApproval | number }}
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-7">
+          <div class="bg-white p-3 rounded-4 shadow-sm border-0 h-100">
+            <h5 class="fw-bold mb-4 fs-6">Contract by Stages</h5>
+
+            <div class="chart-container">
+              <div class="bar-wrapper mx-1">
+                <div
+                  class="chart-bar bg-teal"
+                  [style.height.%]="getStageHeight(dashboardData.stages.active)"
+                ></div>
+
+                <small class="text-muted fs-xs d-block mt-2">Active</small>
+                <small class="fw-bold fs-xs">{{
+                  dashboardData.stages.active
+                }}</small>
+              </div>
+
+              <div class="bar-wrapper mx-1">
+                <div
+                  class="chart-bar bg-teal-dark"
+                  [style.height.%]="getStageHeight(dashboardData.stages.draft)"
+                ></div>
+                <small class="text-muted fs-xs d-block mt-2">Draft</small>
+                <small class="fw-bold fs-xs">{{
+                  dashboardData.stages.draft
+                }}</small>
+              </div>
+
+              <div class="bar-wrapper mx-1">
+                <div
+                  class="chart-bar bg-orange"
+                  [style.height.%]="
+                    getStageHeight(dashboardData.stages.expired)
+                  "
+                ></div>
+                <small class="text-muted fs-xs d-block mt-2">Expired</small>
+                <small class="fw-bold fs-xs">{{
+                  dashboardData.stages.expired
+                }}</small>
+              </div>
+
+              <div class="bar-wrapper mx-1">
+                <div
+                  class="chart-bar bg-danger"
+                  [style.height.%]="
+                    getStageHeight(dashboardData.stages.cancelled)
+                  "
+                ></div>
+                <small class="text-muted fs-xs d-block mt-2">Cancelled</small>
+                <small class="fw-bold fs-xs">{{
+                  dashboardData.stages.cancelled
+                }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="bg-white p-4 rounded-4 shadow-sm border-0 h-100">
+            <h5 class="fw-bold mb-3 fs-6">Contract Expiring</h5>
+            <div class="d-flex align-items-center">
+              <div
+                class="donut-chart position-relative me-3"
+                [style.background]="getDonutGradient()"
+              >
+                <div
+                  class="center-hole bg-white position-absolute rounded-circle"
+                ></div>
+              </div>
+
+              <div class="d-flex flex-column gap-2">
+                <small class="text-muted d-flex align-items-center fs-xs">
+                  <span
+                    class="status-dot small bg-teal rounded-circle me-1"
+                  ></span>
+                  Within 60 days
+                </small>
+                <small class="text-muted d-flex align-items-center fs-xs">
+                  <span
+                    class="status-dot small bg-warning rounded-circle me-1"
+                  ></span>
+                  Within 30 days
+                </small>
+                <small class="text-muted d-flex align-items-center fs-xs">
+                  <span
+                    class="status-dot small bg-orange rounded-circle me-1"
+                  ></span>
+                  Expired
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-4 shadow-sm border-0">
+        <h5 class="fw-bold mb-4 fs-6">My Contracts</h5>
+        <div class="table-responsive">
+          <table class="table table-borderless align-middle">
+            <thead class="text-muted small text-uppercase">
+              <tr>
+                <th class="fw-light fs-sm-11">Serial #</th>
+                <th class="fw-light fs-sm-11">Name</th>
+                <th class="fw-light fs-sm-11">Value</th>
+                <th class="fw-light fs-sm-11">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let contract of contracts"
+                class="border-bottom border-light"
+              >
+                <td class="text-muted small">{{ contract.serial }}</td>
+                <td class="fw-semibold text-dark">{{ contract.name }}</td>
+                <td class="fw-bold text-dark">
+                  ${{ contract.value | number }}
+                </td>
+                <td>
+                  <span
+                    class="badge rounded-pill bg-opacity-10 py-2 fw-normal label"
+                    [ngClass]="getStatusClass(contract.status)"
+                  >
+                    {{ contract.status }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="bg-white p-4 rounded-4 shadow-sm border-0 h-100">
+        <h5 class="fw-bold mb-4 fs-6">Contract by Type</h5>
+
+        <div class="mb-4" *ngFor="let type of dashboardData.types">
+          <div class="d-flex justify-content-between mb-1">
+            <small class="fw-semibold text-muted fs-sm-12">{{
+              type.name
+            }}</small>
+            <small class="fw-bold fs-sm-12">{{ type.percentage }}%</small>
+          </div>
+          <div class="progress progress-slim">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngClass]="type.color"
+              [style.width.%]="type.percentage"
+            ></div>
+          </div>
+        </div>
+
+        <hr class="my-4 text-muted opacity-25" />
+
+        <h5 class="fw-bold mb-3 fs-6">Average Cycle Time</h5>
+        <div class="row g-2">
+          <div class="col-6" *ngFor="let cycle of dashboardData.cycleTime">
+            <div class="p-2 border rounded-3 h-100">
+              <h4 class="fw-bold m-0 fs-5">
+                {{ cycle.days }}
+                <span class="fs-6 text-muted fw-normal">days</span>
+              </h4>
+              <small class="text-muted fs-xs ">{{ cycle.label }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

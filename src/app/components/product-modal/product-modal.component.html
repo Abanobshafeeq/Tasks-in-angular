@@ -1,0 +1,33 @@
+<div class="modal fade" [id]="modalId" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-white border-bottom-0">
+        <h5 class="fw-bold text-main m-0">
+          <i class="bi" [ngClass]="isEditing ? 'bi-pencil-square' : 'bi-plus-circle'"></i>
+          {{ isEditing ? "Edit Product" : "Add New Product" }}
+        </h5>
+        <button type="button" class="btn-close" (click)="close()"></button>
+      </div>
+      
+      <div class="modal-body p-4 pt-0">
+        <form (ngSubmit)="submit()" #f="ngForm">
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-uppercase">Product Name</label>
+            <input type="text" class="form-control" [(ngModel)]="productData.name" name="name" required>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-uppercase">Price (EGP)</label>
+            <input type="number" class="form-control" [(ngModel)]="productData.price" name="price" required>
+          </div>
+
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-primary fw-bold" [disabled]="!f.valid">
+              {{ isEditing ? "Update Changes" : "Add Product" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
