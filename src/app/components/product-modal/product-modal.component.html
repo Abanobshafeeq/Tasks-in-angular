@@ -6,22 +6,34 @@
           <i class="bi" [ngClass]="isEditing ? 'bi-pencil-square' : 'bi-plus-circle'"></i>
           {{ isEditing ? "Edit Product" : "Add New Product" }}
         </h5>
-        <button type="button" class="btn-close" (click)="close()"></button>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
-      
+
       <div class="modal-body p-4 pt-0">
-        <form (ngSubmit)="submit()" #f="ngForm">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
           <div class="mb-3">
-            <label class="form-label small fw-bold text-uppercase">Product Name</label>
-            <input type="text" class="form-control" [(ngModel)]="productData.name" name="name" required>
-          </div>
-          
-          <div class="mb-3">
-            <label class="form-label small fw-bold text-uppercase">Price (EGP)</label>
-            <input type="number" class="form-control" [(ngModel)]="productData.price" name="price" required>
+            <label class="form-label text-muted small fw-bold text-uppercase">Product Name</label>
+            <div class="input-group">
+              <span class="input-group-text border-end-0"><i class="bi bi-tag"></i></span>
+              <input type="text" class="form-control border-start-0" [(ngModel)]="productForm.name" name="name" required placeholder="Ex: Gaming Chair"  />
+            </div>
           </div>
 
-          <div class="d-grid gap-2 mt-4">
+          <div class="mb-3">
+            <label class="form-label text-muted small fw-bold text-uppercase">Price (EGP)</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"><i class="bi bi-currency-dollar"></i></span>
+              <input type="number" class="form-control border-start-0 bg-light" [(ngModel)]="productForm.price" name="price" required placeholder="0.00" onfocus="this.value=''" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-muted small fw-bold text-uppercase">Upload Image</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"><i class="bi bi-cloud-upload"></i></span>
+              <input type="file" class="form-control border-start-0 bg-light text-main" (change)="onFileSelected($event)" accept="image/*" name="image" [required]="!isEditing" />
+            </div>
+          </div> <div class="d-grid gap-2 mt-4">
             <button type="submit" class="btn btn-primary fw-bold" [disabled]="!f.valid">
               {{ isEditing ? "Update Changes" : "Add Product" }}
             </button>

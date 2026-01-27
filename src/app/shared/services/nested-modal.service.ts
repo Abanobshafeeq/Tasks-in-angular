@@ -10,12 +10,18 @@ export class NestedModalService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  open(id: string) {
+  open(id: string , hasBackdrop: boolean = true) {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
-          const modalInstance = bootstrap.Modal.getOrCreateInstance(el, { backdrop: false });
+          const modalInstance = bootstrap.Modal.getOrCreateInstance(el, { 
+            // lw fii kza 8alfia el afdel false 
+            // backdrop: false  
+
+            // lw 3iz 8alfia 
+             backdrop: hasBackdrop  
+          });
           modalInstance.show();
         }
       }, 0);

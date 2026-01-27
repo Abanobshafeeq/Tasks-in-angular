@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProductsWithModalComponent } from "../products-with-modal/products-with-modal.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductsWithModalComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -33,7 +34,9 @@ export class DashboardComponent {
       { label: 'NDA', days: 25 },
       { label: 'Insurance', days: 45 },
       { label: 'Lease', days: 18 },
-      { label: 'Purchase', days: 12 }
+      { label: 'Purchase', days: 12 } ,
+      { label : 'Ass' ,days: 60},
+      { label : 'scs' ,days: 100},
     ]
   };
 

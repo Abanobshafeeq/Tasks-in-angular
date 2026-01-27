@@ -4,7 +4,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
-import { TestComponent } from './components/test/test.component';
+import { ProductsWithModalComponent } from './components/products-with-modal/products-with-modal.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'product-showCase', component: ProductListComponent },
   { path: 'dashboard', component: DashboardComponent },
   {path : 'add-new-product' , component : ProductsComponent} ,
-  {path : 'test' , component : TestComponent} ,
+  {path : 'add-new-product-with-modal' , component : ProductsWithModalComponent},
 
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

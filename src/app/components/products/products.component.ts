@@ -19,7 +19,7 @@ export class ProductsComponent {
   productForm: Product = {
     id : 0 ,
     name : '' ,
-    price : 0 ,
+    price : null ,
     imageUrl : '' ,
   };
 

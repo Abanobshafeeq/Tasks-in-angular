@@ -12,8 +12,12 @@
   --color-hover-primary: #444444;
 }
 
+.container-fluid{
+  --bs-gutter-x: 0.5rem !important;
+}
+
 /* ///////////////////////////////////// */
-.text-main{
+.text-main {
   color: var(--main-color) !important;
 }
 .custom-signup-scope span {
@@ -126,4 +130,91 @@ select.input-gray {
 }
 .fs-sm-12 {
   font-size: 12px !important;
+}
+
+/*----------------------------- products-------------------------- */
+
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1.5rem;
+}
+
+.table th {
+  font-size: 0.75rem !important;
+  letter-spacing: 1px !important;
+  color: #888 !important;
+  border-bottom: 1px solid #eee !important;
+  padding-bottom: 15px !important;
+}
+
+.table td {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  border-bottom: 1px solid #f5f5f5 !important;
+}
+
+.table tbody tr {
+  transition: background 0.2s !important;
+}
+
+.table tbody tr:hover {
+  background-color: #fcfcfc !important;
+}
+
+.image-view {
+  width: 50px !important;
+  height: 50px !important;
+  overflow: hidden !important;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #0d6efd 0%, #00b2fe 100%) !important;
+  border: none !important;
+  padding: 12px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.product-img-wrapper {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  background: #f4f6f8 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.product-img-wrapper img {
+  border-radius: 8px !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .container-fluid {
+    --bs-gutter-x: 0rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  h6 {
+    font-size: 0.9rem !important;
+  }
+  small {
+    font-size: 0.7rem !important;
+  }
+  .btn-sm {
+    padding: 0.25rem 0.4rem !important;
+  }
 }
