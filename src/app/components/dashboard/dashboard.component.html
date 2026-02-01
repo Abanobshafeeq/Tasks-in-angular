@@ -1,5 +1,5 @@
 <div class="container-fluid min-vh-100 p-1">
-  <h2 class="fw-bold mb-4  text-main">Dashboard</h2>
+  <h2 class="fw-bold mb-4 text-main">Dashboard</h2>
 
   <div class="row g-3">
     <div class="col-lg-9">
@@ -173,7 +173,7 @@
     </div>
 
     <div class="col-lg-3">
-      <div class="bg-white p-4 pb-0  rounded-4 shadow-sm border-0 h-100">
+      <div class="bg-white p-4 pb-0 rounded-4 shadow-sm border-0 h-100">
         <h5 class="fw-bold mb-4 fs-6">Contract by Type</h5>
 
         <div class="mb-4" *ngFor="let type of dashboardData.types">
@@ -203,14 +203,58 @@
                 {{ cycle.days }}
                 <span class="fs-6 text-muted fw-normal">days</span>
               </h4>
-              <small class="text-muted fs-xs ">{{ cycle.label }}</small>
+              <small class="text-muted fs-xs">{{ cycle.label }}</small>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-12">
+    <div class="col-6">
+      <div class="bg-white p-4 pb-0 rounded-4 shadow-sm border-0 chart-height">
+        <div>
+        <h5 class="fw-bold mb-4 fs-6">Line Chart With ApexCharts</h5>
+          @defer (on viewport) {
+            <app-chart-line-apex-chart></app-chart-line-apex-chart>
+          } @placeholder {
+            <div
+              style="
+                height: 350px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #f8f9fa;
+                color: #6c757d;
+              "
+            >
+              <p>Loading Chart...</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="bg-white p-4 pb-0 rounded-4 shadow-sm border-0 chart-height">
+        <div>
+        <h5 class="fw-bold mb-4 fs-6">Line Chart With CanvasJS</h5>
+          @defer (on viewport) {
+            <app-chart-line-canvas-js></app-chart-line-canvas-js>
+          } @placeholder {
+            <div
+              style="
+                height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #f8f9fa;
+                color: #6c757d;
+              "
+            >
+              <p>Loading Chart...</p>
+            </div>
+          }
+        </div>
+      </div>
     </div>
   </div>
 </div>
-      <app-products-with-modal></app-products-with-modal>
+<app-products-with-modal></app-products-with-modal>

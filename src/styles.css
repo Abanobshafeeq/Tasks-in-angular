@@ -12,7 +12,7 @@
   --color-hover-primary: #444444;
 }
 
-.container-fluid{
+.container-fluid {
   --bs-gutter-x: 0.5rem !important;
 }
 
@@ -199,6 +199,13 @@ select.input-gray {
 
 .product-img-wrapper img {
   border-radius: 8px !important;
+}
+.chart-height{
+  height: 450px !important;
+}
+/* إخفاء العلامة المائية الخاصة بـ CanvasJS */
+.canvasjs-chart-credit {
+  display: none !important ;
 }
 
 @media screen and (max-width: 1024px) {

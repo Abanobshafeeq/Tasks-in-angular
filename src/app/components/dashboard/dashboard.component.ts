@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsWithModalComponent } from "../products-with-modal/products-with-modal.component";
-
+import { ChartLineApexChartComponent } from "../chart-line-apex-chart/chart-line-apex-chart.component";
+import { ChartLineCanvasJsComponent } from '../chart-line-canvas-js/chart-line-canvas-js.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ProductsWithModalComponent],
+  imports: [CommonModule, ProductsWithModalComponent, ChartLineApexChartComponent, ChartLineCanvasJsComponent ,ChartLineCanvasJsComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -18,7 +19,7 @@ export class DashboardComponent {
       inApproval: 1596
     },
     stages: {
-      active: 30,
+  active: 100,
       draft: 65,
       expired: 15,
       cancelled: 10
