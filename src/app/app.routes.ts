@@ -5,12 +5,14 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsWithModalComponent } from './components/products-with-modal/products-with-modal.component';
+import { MasonaryGallaryComponent } from './components/masonary-gallary/masonary-gallary.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   { path: 'form', component: FormComponent },
   { path: 'gallery', component: GalleryComponent },
+  { path: 'masonary-gallery', component: MasonaryGallaryComponent },
   { path: 'product-showCase', component: ProductListComponent },
   { path: 'dashboard', component: DashboardComponent },
   {path : 'add-new-product' , component : ProductsComponent} ,

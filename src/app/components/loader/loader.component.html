@@ -1,0 +1,11 @@
+<div *ngIf="isLoading" class="loader-container">
+  <div class="logo-wrapper">
+    <img src="../../../assets/images/logoLoader.png" alt="Logo" class="center-logo">
+    <div class="spinner"></div>
+  </div>
+  <p>Loading...</p>
+</div>
+
+<div *ngIf="!isLoading" class="main-content">
+   <ng-content></ng-content>
+</div>

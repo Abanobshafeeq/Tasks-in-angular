@@ -1,5 +1,7 @@
 <app-sidebar></app-sidebar>
 
 <main class="main-content">
-  <router-outlet></router-outlet>
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <router-outlet *ngIf="!isLoading"></router-outlet>
 </main>

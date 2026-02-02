@@ -45,6 +45,8 @@
   padding: 0;
   margin: 20px 0;
   flex: 1;
+  overflow-y: auto;
+  
 }
 
 .menu li {
@@ -90,7 +92,13 @@
     width: 80px;
     padding: 16px 10px;
   }
-
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 1.5rem;
+    margin: auto;
+  }
   .logo-text, 
   .menu li span, 
   .sidebar-footer .user-info {

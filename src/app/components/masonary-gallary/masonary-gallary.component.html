@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Masonry Gallery (100 Items)</h2>
+  
+  <div class="masonry-grid">
+    @for (imgUrl of images; track $index) {
+      <div class="masonry-item">
+        <img [src]="imgUrl" alt="Random Image" loading="lazy">
+        <div class="overlay">Image #{{ $index + 1 }}</div>
+      </div>
+    }
+  </div>
+</div>
