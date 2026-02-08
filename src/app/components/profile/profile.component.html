@@ -1,0 +1,87 @@
+<div class="custom-profile-scope" *ngIf="userData">
+  <div class="wrapper">
+    
+    <div class="profile-header">
+      <div class="header-content">
+        <div class="image-container">
+          <img [src]="userData.photo || 'assets/default-avatar.png'" alt="Profile Photo" class="profile-img">
+        </div>
+        <div class="main-info">
+          <h2 class="user-name">{{ userData.fullName }}</h2>
+          <p class="user-role">
+            <span class="badge">{{ userData.position }}</span> 
+            at <span class="text-primary">{{ userData.party }}</span>
+          </p>
+          <p class="user-constituency"><i class="bi bi-geo-alt-fill"></i> {{ userData.constituency }}</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="primary-btn" (click)="edit()" style="margin-right: 10px;">
+           Edit Profile
+        </button>
+        <button class="secondary-btn" (click)="printProfile()">Download PDF</button>
+      </div>
+    </div>
+
+
+
+    <div class=" divider section vision-section">
+      <h3>Vision & Mission</h3>
+      <p class="vision-text">" {{ userData.vision }} "</p>
+    </div>
+
+    <div class="grid-2">
+      
+      <div class="section">
+        <h3>Personal Details</h3>
+        <div class="info-group">
+          <label>Date of Birth</label>
+          <p>{{ userData.dob | date:'mediumDate' }}</p>
+        </div>
+        <div class="info-group">
+          <label>Gender</label>
+          <p class="capitalize">{{ userData.gender }}</p>
+        </div>
+        <div class="info-group">
+          <label>ID Type</label>
+          <p>{{ userData.idType }}</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Contact Info</h3>
+        <div class="info-group">
+          <label>Email</label>
+          <p>{{ userData.email }}</p>
+        </div>
+        <div class="info-group">
+          <label>Mobile</label>
+          <p>{{ userData.mobile }}</p>
+        </div>
+        <div class="info-group">
+          <label>Address</label>
+          <p>{{ userData.address }}</p>
+        </div>
+        <div class="social-links">
+          <a *ngIf="userData.facebook" [href]="userData.facebook" target="_blank" class="social-btn fb">Facebook</a>
+          <a *ngIf="userData.linkedin" [href]="userData.linkedin" target="_blank" class="social-btn in">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sectionEducation">
+      <h3>Education</h3>
+      <div class="education-list">
+        <div class="edu-card" *ngFor="let edu of userData.education">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-details">
+            <span class="degree">{{ edu.degree }}</span>
+            <span class="college">{{ edu.college }}</span>
+          </div>
+          <div class="edu-year">{{ edu.year }}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

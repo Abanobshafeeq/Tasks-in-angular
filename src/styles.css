@@ -10,12 +10,89 @@
   --color-white: #ffffff;
   --color-border: #e0e0e0;
   --color-hover-primary: #444444;
+  --text-gray: #666;
+  --text-dark: #333;
 }
 
 .container-fluid {
   --bs-gutter-x: 0.5rem !important;
 }
+/* ///////////////////////////////////////////// */
+.wrapper {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 40px 60px;
+  background: #fff;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
 
+/* العناوين */
+.main-title {
+  text-align: center;
+  margin: 0 0 30px 0;
+  color: var(--text-dark);
+  font-size: 24px;
+}
+
+h3, h4 {
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 15px;
+}
+
+.primary-btn {
+  background: linear-gradient(to right, var(--main-color), #0b5ed7);
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  font-size: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+  transition: all 0.3s ease;
+}
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.4);
+}
+
+
+.secondary-btn {
+  background: white;
+  color: #555;
+  border: 1px solid #ddd;
+  padding: 10px 30px;
+  font-size: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.secondary-btn:hover {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .wrapper { padding: 30px 20px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
 /* ///////////////////////////////////// */
 .text-main {
   color: var(--main-color) !important;
@@ -132,6 +209,30 @@ select.input-gray {
   font-size: 12px !important;
 }
 
+.skeleton-box {
+  background-color: #f2f2f2;
+  background-image: linear-gradient(
+    90deg,
+    #f2f2f2 0%,
+    #e0e0e0 50%,
+    #f2f2f2 100%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.sk-title { height: 20px; width: 60%; margin-bottom: 15px; }
+.sk-number { height: 35px; width: 40%; }
+.sk-circle { height: 100px; width: 100px; border-radius: 50%; }
+.sk-bar { height: 150px; width: 30px; margin: 0 10px; }
 /*----------------------------- products-------------------------- */
 
 .card {

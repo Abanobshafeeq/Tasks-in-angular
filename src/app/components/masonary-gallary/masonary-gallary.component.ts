@@ -16,7 +16,7 @@ export class MasonaryGallaryComponent {
   }
 
   generateImages() {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
       // توليد ارتفاع عشوائي بين 200 و 500 بكسل لعمل تأثير التفاوت
       const randomHeight = Math.floor(Math.random() * (500 - 200 + 1)) + 200;
       
